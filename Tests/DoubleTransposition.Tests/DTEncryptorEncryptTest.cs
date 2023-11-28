@@ -1,6 +1,6 @@
 namespace DoubleTransposition.Tests;
 
-public class DTEncryprorEncryptTest
+public class DTEncryptorEncryptTest
 {
     [Theory]
     [InlineData("шифрование_перестановкой_", "35214", "43251", "аенофоее_отпакис_ввшнрийр")]
