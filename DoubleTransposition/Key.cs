@@ -13,7 +13,7 @@ public class Key
 
     private IList<int> ParseKey(string key)
     {
-        return key.Select(c => (int)c - 1).ToList();
+        return key.Select(c => (int)char.GetNumericValue(c) - 1).ToList();
     }
 
     private bool IsSequenceValid()

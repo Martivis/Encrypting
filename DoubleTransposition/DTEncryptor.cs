@@ -6,13 +6,18 @@ public static class DTEncryptor
     {
         var columns = key1.Length;
         var rows = key2.Length;
+        if (columns * rows < source.Length)
+            throw new ArgumentException("Keys length is too low for this message");
+        
         var matrix = new char[key1.Length, key2.Length];
         
         for (var i = 0; i < columns; i++)
         {
             for (var j = 0; j < rows; j++)
             {
-                matrix[key1.Sequence.IndexOf(i) , key2.Sequence.IndexOf(j)] = source[i + j];
+                if (i + j > source.Length)
+                    break;
+                matrix[key2.Sequence.IndexOf(i), key1.Sequence.IndexOf(j)] = source[i * rows + j];
             }
         }
 
@@ -21,7 +26,7 @@ public static class DTEncryptor
         {
             for (var j = 0; j < columns; j++)
             {
-                charResult[i + j] = matrix[i, j];
+                charResult[i * rows + j] = matrix[j, i];
             }
         }
 
