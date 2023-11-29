@@ -9,6 +9,8 @@ public class Key
     public Key(string key)
     {
         Sequence = ParseKey(key);
+        if (!IsSequenceValid())
+            throw new ArgumentException("Invalid sequence");
     }
 
     private IList<int> ParseKey(string key)
